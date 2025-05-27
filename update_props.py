@@ -1,34 +1,32 @@
-import requests
-import json
+name: Update MLB Player Props Daily
 
-# Example endpoint: replace with your actual odds API or data source
-API_URL = "https://api.example.com/mlb/player-props/fanduel"
+on:
+  schedule:
+    - cron: '0 7 * * *'  # Every day at 7:00 UTC
+  workflow_dispatch:
 
-def fetch_props():
-    response = requests.get(API_URL)
-    response.raise_for_status()
-    data = response.json()
+jobs:
+  update_props:
+    runs-on: ubuntu-latest
 
-    # Transform data to desired structure (example)
-    props = []
-    for item in data['props']:
-        prop = {
-            "player": item['playerName'],
-            "team": item['teamAbbreviation'],
-            "prop": item['marketName'],
-            "predicted_odds": item['odds'],
-            "book": "FanDuel",
-            "game_time": item['startTime']
-        }
-        props.append(prop)
+    steps:
+    - uses: actions/checkout@v3
 
-    return props
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
 
-def save_props(props, filename="props.json"):
-    with open(filename, "w") as f:
-        json.dump(props, f, indent=2)
+    - name: Install dependencies
+      run: pip install requests
 
-if __name__ == "__main__":
-    props = fetch_props()
-    save_props(props)
-    print(f"Saved {len(props)} props to props.json")
+    - name: Run update script
+      run: python update_props.py
+
+    - name: Commit & push changes
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add props.json
+        git commit -m "Auto update props.json [skip ci]" || echo "No changes to commit"
+        git push
