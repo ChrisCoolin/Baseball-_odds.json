@@ -1,0 +1,11 @@
+{
+  "odds": [
+    {
+      "home_team": "New York Yankees",
+      "away_team": "Boston Red Sox",
+      "spread": "-1.5",
+      "home_odds": "-150",
+      "away_odds": "+130"
+    }
+  ]
+}
