@@ -1,0 +1,26 @@
+[
+  {
+    "player": "Aaron Judge",
+    "team": "NYY",
+    "prop": "Over 0.5 HR",
+    "predicted_odds": "+160",
+    "book": "FanDuel",
+    "game_time": "2025-05-27T19:05:00"
+  },
+  {
+    "player": "Mookie Betts",
+    "team": "LAD",
+    "prop": "Over 1.5 Hits",
+    "predicted_odds": "+120",
+    "book": "FanDuel",
+    "game_time": "2025-05-27T22:10:00"
+  },
+  {
+    "player": "Ronald Acuña Jr.",
+    "team": "ATL",
+    "prop": "Over 1.5 Total Bases",
+    "predicted_odds": "+135",
+    "book": "FanDuel",
+    "game_time": "2025-05-27T20:20:00"
+  }
+]
