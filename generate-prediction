@@ -1,0 +1,33 @@
+const fs = require("fs");
+const path = require("path");
+
+// Simulated prediction model — replace this with real logic or API later
+const games = [
+  { home_team: "Red Sox", away_team: "Yankees" },
+  { home_team: "Giants", away_team: "Dodgers" },
+  { home_team: "Cubs", away_team: "Cardinals" },
+  { home_team: "Mets", away_team: "Phillies" }
+];
+
+// Generate fake probabilities
+function simulateWinProbabilities(game) {
+  const homeWinProb = +(Math.random() * 0.3 + 0.35).toFixed(2); // 0.35–0.65
+  const awayWinProb = +(1 - homeWinProb).toFixed(2);
+  return { ...game, home_win_prob: homeWinProb, away_win_prob: awayWinProb };
+}
+
+const predictions = {
+  games: games.map(simulateWinProbabilities)
+};
+
+// Ensure the `predictions/` folder exists
+const outDir = path.join(__dirname, "predictions");
+if (!fs.existsSync(outDir)) {
+  fs.mkdirSync(outDir);
+}
+
+// Write latest.json
+const outPath = path.join(outDir, "latest.json");
+fs.writeFileSync(outPath, JSON.stringify(predictions, null, 2));
+
+console.log(`✅ Predictions written to ${outPath}`);
