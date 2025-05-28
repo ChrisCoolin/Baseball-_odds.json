@@ -1,0 +1,16 @@
+{
+  "games": [
+    {
+      "home_team": "Red Sox",
+      "away_team": "Yankees",
+      "home_win_prob": 0.58,
+      "away_win_prob": 0.42
+    },
+    {
+      "home_team": "Giants",
+      "away_team": "Dodgers",
+      "home_win_prob": 0.61,
+      "away_win_prob": 0.39
+    }
+  ]
+}
